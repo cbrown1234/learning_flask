@@ -1,7 +1,13 @@
 flask
-python-dotenv
 flask-wtf
 flask-sqlalchemy
 flask-migrate
 flask-login
+flask-mail
+pyjwt
+
+# env
+python-dotenv
+
+# testing
 pytest

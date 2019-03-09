@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, BooleanField, SubmitField, TextAreaField, PasswordField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 
 from app.models import User
@@ -51,3 +51,15 @@ class PostForm(FlaskForm):
         DataRequired(), Length(min=1, max=140)
     ])
     submit = SubmitField('Submit')
+
+
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Request Password Reset')
